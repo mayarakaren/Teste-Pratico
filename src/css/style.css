@@ -89,7 +89,7 @@
   }
 
   input[type="cadastroPessoa"] {
-    width: 30%;
+    width: 20%;
     padding: 8px;
     border: 0.5px solid rgb(184, 184, 184);
     border-radius: 8px;
@@ -125,7 +125,7 @@
   }
 
   #estadoCivil {
-    width: 15%;
+    width: 20%;
     padding: 8px;
     border: 0.5px solid rgb(184, 184, 184);
     border-radius: 8px;
