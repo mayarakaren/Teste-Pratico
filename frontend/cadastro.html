@@ -1,47 +1,72 @@
 <!DOCTYPE html>
 <html lang="UTF-8">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/style.css" />
     <title>PreencheAqui</title>
 </head>
+
 <body>
-    <form id="cadastroForm">
-        <label for="nomeCompleto">Nome Completo:</label>
-        <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+    <main>
+        <section class="signinForm">
+            <form id="signupForm">
+                <div class="pessoais">
+                    <label class="nome">Nome Completo</label>
+                    <input type="text" name="nomeCompleto" required />
 
-        <label for="dataNascimento">Data de Nascimento:</label>
-        <input type="date" id="dataNascimento" name="dataNascimento" required>
+                    <div class="group">
+                        <label class="dataNascimento">Data de Nascimento</label>
+                        <input type="date" name="dataNascimento" required />
 
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="123.456.789-00" required>
+                        <label class="idade">Idade</label>
+                        <input type="idade" name="idade" required />
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+                        <label class="cpf">CPF</label>
+                        <input class="cadastroPessoa" type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                            placeholder="123.456.789-00" required />
+                    </div>
 
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" placeholder="(00) 12345-6789" required>
+                    <label class="email">Email</label>
+                    <input type="email" name="email" required />
+                </div>
 
-        <label for="estadoCivil">Estado Civil:</label>
-        <select id="estadoCivil" name="estadoCivil" required>
-            <option value="solteiro">Solteiro(a)</option>
-            <option value="casado">Casado(a)</option>
-            <option value="divorciado">Divorciado(a)</option>
-        </select>
+                <div class="contato">
+                    <div class="group">
+                        <label class="telefone">Telefone</label>
+                        <input type="tel" name="telefone" pattern="\(\d{2}\)\s?\d{4,5}-\d{4}"
+                            placeholder="(00) 12345-6789" required />
 
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" required>
+                        <label class="estadoCivil">Estado Civil:</label>
+                        <select id="estadoCivil" name="estadoCivil" required>
+                            <option value="solteiro">Solteiro(a)</option>
+                            <option value="casado">Casado(a)</option>
+                            <option value="divorciado">Divorciado(a)</option>
+                        </select>
+                    </div>
 
-        <label for="cep">CEP:</label>
-        <input type="text" id="cep" name="cep" pattern="\d{5}-\d{3}" placeholder="12345-678" required>
+                    <label class="endereco">Endereço</label>
+                    <input type="text" name="endereco" required />
 
+                    <label class="cep">CEP</label>
+                    <input type="text" name="cep" pattern="\d{5}-\d{3}" placeholder="12345-678" required />
+                </div>
+                <br/>
+                <button class="botao" type="button" onclick="salvarDados()">
+                    Salvar
+                </button>
+                <button class="botao" type="button" onclick="limparFormulario()">
+                    Cancelar
+                </button>
+        </section>
+        <section class="signinImg">
 
-        <button type="button" onclick="salvarDados()">SALVAR</button>
-        <button type="button" onclick="limparFormulario()">CANCELAR</button>
-    </form>
-
+        </section>
+        </form>
+    </main>
 
     <script src="js/mascara.js"></script>
 </body>
+
 </html>
