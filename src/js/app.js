@@ -1,4 +1,5 @@
-const inputTelefone = document.getElementById("telefone");
+const inputTelefone = document.querySelectorAll("#telefone")[1];
+console.log(inputTelefone)
 
 function formatarTelefone(numero) {
     numero = numero.replace(/[^0-9]/g, "");
@@ -30,7 +31,7 @@ function formatarCPF(numero) {
         return `${numero.slice(0, 3)}.${numero.slice(3, 6)}.${numero.slice(6, 9)}-${numero.slice(9, 11)}`;
     }
 }
-const inputCPF = document.getElementById("cpf");
+const inputCPF = document.querySelectorAll("#cpf")[1];
 
 inputCPF.addEventListener("input", (event) => {
     const valorAtual = event.target.value;
@@ -47,7 +48,7 @@ function formatarCEP(cep) {
     }
     return cep;
 }
-const inputCEP = document.getElementById('cep');
+const inputCEP = document.querySelectorAll('#cep')[1];
 
 inputCEP.addEventListener('input', (event) => {
     const valorAtual = event.target.value;
@@ -79,9 +80,9 @@ function validarCPF(cpf) {
   }
   
   function validar() {
-    const cpf = document.getElementById("cpf").value;
-    const cep = document.getElementById("cep").value;
-    const email = document.getElementById("email").value;
+    const cpf = document.querySelectorAll("#cpf")[1].value;
+    const cep = document.querySelectorAll("#cep")[1].value;
+    const email = document.querySelectorAll("#email")[1].value;
   
     if (!validarCPF(cpf)) {
       alert("CPF inválido!");
@@ -113,5 +114,5 @@ function validarCPF(cpf) {
         diffAnos--;
     }
 
-    document.getElementById('idade').value = diffAnos;
+    document.querySelectorAll('#idade')[1].value = diffAnos;
 });

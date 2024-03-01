@@ -1,4 +1,4 @@
-""" from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 import os
 
@@ -59,4 +59,4 @@ def salvar_no_banco(dados_formulario):
         connection.commit()
 
 if __name__ == '__main__':
-    app.run(debug=True) """
+    app.run(debug=True)
