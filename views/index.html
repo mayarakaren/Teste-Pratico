@@ -4,10 +4,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../src/css/styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/css/styles.css') }}">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
     <title>PreencheAqui</title>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-messages">
+        <button class="flash-close-btn">×</button>
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
 </head>
 
 <body>
@@ -31,10 +43,11 @@
                 <button type="submit" class="botao">LOGIN</button>
             </form>
             <br />
-            <p>Ainda não tem conta? <a href="cadastrar.html">Cadastre-se</a></p>
+            <p>Ainda não tem conta? <a href="{{ url_for('routes.cadastrar') }}">Cadastre-se</a></p>
         </section>
         <section class="signinImg"></section>
     </main>
+    <script src="{{ url_for('static', filename='src/js/script.js') }}"></script>
 </body>
 
 </html>

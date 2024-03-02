@@ -1,12 +1,15 @@
 # controllers/auth.py
 from flask_login import LoginManager, UserMixin
-from models.database import Pessoa  
+from models.database import db, Pessoa
 
 login_manager = LoginManager()
 login_manager.login_view = 'routes.login'
 
-class User(UserMixin):
-    pass
+class User(db.Model, UserMixin):
+    __tablename__ = 'pessoa'  
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.String(255))
+    senha = db.Column(db.String(255))
 
 @login_manager.user_loader
 def load_user(user_id):

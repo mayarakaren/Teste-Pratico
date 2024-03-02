@@ -40,7 +40,7 @@ def login():
             user = create_user_from_pessoa(pessoa)
             login_user(user)
             flash('Login realizado com sucesso!', 'success')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('routes.dashboard'))
         else:
             flash('Email ou senha inválidos. Verifique suas credenciais e tente novamente.', 'error')
 
@@ -62,7 +62,16 @@ def obter_pessoas():
         'dataNascimento': pessoa.dataNascimento.strftime('%d/%m/%Y'),
     } for pessoa in pessoas])
 
+@routes_blueprint.route('/cadastrar')
+def cadastrar():
+    return render_template('cadastrar.html')
+
 #Create
+from flask import request, render_template, redirect, url_for, flash
+from models.database import db, Pessoa
+from werkzeug.security import generate_password_hash
+from datetime import datetime
+
 @routes_blueprint.route('/salvar', methods=['POST'])
 def salvar():
     nomeCompleto = request.form['nomeCompleto']
@@ -76,7 +85,12 @@ def salvar():
     cep = request.form['cep']
     senha = request.form['password']
 
-    senha_hash = generate_password_hash(senha, method='sha256')
+    existing_pessoa = Pessoa.query.filter_by(cpf=cpf).first()
+    if existing_pessoa:
+        flash('CPF já cadastrado. Por favor, use um CPF diferente.', 'error')
+        return render_template('cadastrar.html', pessoa=existing_pessoa)
+
+    senha_hash = generate_password_hash(senha, method='scrypt')
 
     nova_pessoa = Pessoa(
         nomeCompleto=nomeCompleto,
@@ -95,7 +109,7 @@ def salvar():
     db.session.commit()
 
     flash('Cadastro realizado com sucesso!', 'success')
-    return redirect(url_for('login'))
+    return redirect(url_for('routes.login'))
 
 #Read
 @routes_blueprint.route('/pessoas/<int:id>', methods=['GET'])
@@ -120,7 +134,7 @@ def editar_pessoa(id):
         pessoa.senha = request.form['password']  # Adicione essa linha
         db.session.commit()
         flash('Dados da pessoa atualizados com sucesso!', 'success')
-        return redirect(url_for('dashboard'))  
+        return redirect(url_for('routes.dashboard')) 
     return render_template('cadastro.html', pessoa=pessoa)
 
 # Delete
@@ -130,5 +144,5 @@ def excluir_pessoa(id):
     db.session.delete(pessoa)
     db.session.commit()
     flash('Pessoa removida com sucesso!', 'success')
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('routes.dashboard'))
 

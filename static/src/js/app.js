@@ -206,7 +206,7 @@ passwordConfInput.addEventListener("input", () => {
     }
 });
 
-//Dados
+//Dados da tabela
 document.addEventListener("DOMContentLoaded", function () {
     const tabela = document.getElementById("tabela-dados");
     const tbody = tabela.querySelector("tbody");
@@ -264,3 +264,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//Pop-up
+document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('flash-close-btn')) {
+            e.target.parentElement.style.display = 'none';
+        }
+    });
+});
