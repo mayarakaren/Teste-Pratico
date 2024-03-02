@@ -99,6 +99,36 @@
                           required
                         />
                       </label>
+                      <label for="senha" id="password">
+                        Digite uma senha
+                        <input
+                            type="password"
+                            name="password"
+                            id="passwordInput"
+                            required
+                            minlength="8"
+                            maxlength="16"
+                            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}"
+                            title="A senha deve ter entre 8 e 16 caracteres, com pelo menos uma letra minúscula, uma letra maiúscula e um número."
+                        />
+                        <i class="password-eye-icon fa-eye"></i>
+                    </label>
+            
+                    <label for="senhaConf" id="passwordConf">
+                        Confirmação de Senha
+                        <input
+                            type="password"
+                            name="passwordConf"
+                            id="passwordConfInput"
+                            required
+                            minlength="8"
+                            maxlength="16"
+                            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}"
+                            title="A senha deve ter entre 8 e 16 caracteres, com pelo menos uma letra minúscula, uma letra maiúscula e um número."
+                        />
+                        <i class="password-eye-icon fa-eye"></i>
+                    </label>
+                      </label>
                 </fieldset>
                 <footer>
                     <button class="botao" type="submit" onclick="validar()">Salvar</button>

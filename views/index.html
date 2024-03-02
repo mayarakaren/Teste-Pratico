@@ -13,9 +13,9 @@
 <body>
     <main>
         <section class="signinForm">
-            <form class="loginForm">
+            <form class="loginForm" action="{{ url_for('login') }}" method="POST">
                 <header>
-                    <h2>Sign in</h2>
+                    <h2>Entre</h2>
                     <p>Insira suas credenciais para acessar o PreencheAqui.</p>
                 </header>
                 <div class="inputs">
@@ -28,7 +28,7 @@
                         <input type="password" id="senha" name="senha" required />
                     </div>
                 </div>
-                <button type="button" class="botao" onclick="logar()">LOGIN</button>
+                <button type="submit" class="botao">LOGIN</button>
             </form>
             <br />
             <p>Ainda não tem conta? <a href="cadastrar.html">Cadastre-se</a></p>
