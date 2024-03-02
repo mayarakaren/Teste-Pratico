@@ -241,11 +241,14 @@ document.addEventListener("DOMContentLoaded", function () {
     carregarDados();
 
     tabela.addEventListener("click", function (event) {
-        if (event.target.classList.contains("editar")) {
-            const id = event.target.dataset.id;
+        const botaoEditar = event.target.closest(".editar");
+        const botaoExcluir = event.target.closest(".excluir");
+
+        if (botaoEditar) {
+            const id = botaoEditar.getAttribute("data-id");
             window.location.href = `/editpessoa/${id}`;
-        } else if (event.target.classList.contains("excluir")) {
-            const id = event.target.dataset.id;
+        } else if (botaoExcluir) {
+            const id = botaoExcluir.getAttribute("data-id");
             if (confirm("Tem certeza que deseja excluir esta pessoa?")) {
                 fetch(`/excluir_pessoa/${id}`, {
                     method: "DELETE",
@@ -260,3 +263,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+

@@ -13,8 +13,9 @@ class Pessoa(db.Model):
     estadoCivil = db.Column(db.String(50))
     endereco = db.Column(db.String(255))
     cep = db.Column(db.String(10))
+    senha = db.Column(db.String(255))
 
-    def __init__(self, nomeCompleto, dataNascimento, idade, cpf, email, telefone, estadoCivil, endereco, cep):
+    def __init__(self, nomeCompleto, dataNascimento, idade, cpf, email, telefone, estadoCivil, endereco, cep, senha):
         self.nomeCompleto = nomeCompleto
         self.dataNascimento = dataNascimento
         self.idade = idade
@@ -24,3 +25,4 @@ class Pessoa(db.Model):
         self.estadoCivil = estadoCivil
         self.endereco = endereco
         self.cep = cep
+        self.senha = senha

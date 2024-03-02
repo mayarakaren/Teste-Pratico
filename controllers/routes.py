@@ -5,19 +5,31 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 
 sys.path.append(os.path.join(current_dir, '..'))
 
-from flask import Flask, render_template, request, url_for, redirect, flash, jsonify
+from flask import Flask
+from flask import Blueprint, render_template, request, url_for, redirect, flash, jsonify, current_app
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from controllers.auth import create_user_from_pessoa
 from flask_login import UserMixin
 from flask import current_app as app
 from models.database import db, Pessoa
 from datetime import datetime
 
+routes_blueprint = Blueprint('routes', __name__)
+
 class User(UserMixin):
     pass
 
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+@routes_blueprint.route('/')
+def index():
+    return render_template('index.html')
+
 # Página de login
-@app.route('/login', methods=['GET', 'POST'])
+@routes_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -25,8 +37,7 @@ def login():
         
         pessoa = Pessoa.query.filter_by(email=email).first()
         if pessoa and check_password_hash(pessoa.senha, senha):  
-            user = User()
-            user.id = pessoa.id
+            user = create_user_from_pessoa(pessoa)
             login_user(user)
             flash('Login realizado com sucesso!', 'success')
             return redirect(url_for('dashboard'))
@@ -36,12 +47,12 @@ def login():
     return render_template('index.html')
 
 # Rota para a página Dash
-@app.route('/dashboard', methods=['GET'])
+@routes_blueprint.route('/dashboard', methods=['GET'])
 def dashboard():
     pessoas_list = Pessoa.query.all()
     return render_template('dash.html', pessoas=pessoas_list)
 
-@app.route('/api/pessoas')
+@routes_blueprint.route('/api/pessoas')
 def obter_pessoas():
     pessoas = Pessoa.query.all()
     return jsonify([{
@@ -52,7 +63,7 @@ def obter_pessoas():
     } for pessoa in pessoas])
 
 #Create
-@app.route('/salvar', methods=['POST'])
+@routes_blueprint.route('/salvar', methods=['POST'])
 def salvar():
     nomeCompleto = request.form['nomeCompleto']
     dataNascimento = datetime.strptime(request.form['dataNascimento'], '%Y-%m-%d')
@@ -87,13 +98,13 @@ def salvar():
     return redirect(url_for('login'))
 
 #Read
-@app.route('/pessoas/<int:id>', methods=['GET'])
+@routes_blueprint.route('/pessoas/<int:id>', methods=['GET'])
 def pessoa_detalhes(id):
     pessoa = Pessoa.query.get(id)
     return render_template('dash.html', pessoa=pessoa)
 
 #Update
-@app.route('/editpessoa/<int:id>', methods=['GET', 'POST'])
+@routes_blueprint.route('/editpessoa/<int:id>', methods=['GET', 'POST'])
 def editar_pessoa(id):
     pessoa = Pessoa.query.get(id)
     if request.method == 'POST':
@@ -106,14 +117,14 @@ def editar_pessoa(id):
         pessoa.estadoCivil = request.form['estadoCivil']
         pessoa.endereco = request.form['endereco']
         pessoa.cep = request.form['cep']
+        pessoa.senha = request.form['password']  # Adicione essa linha
         db.session.commit()
         flash('Dados da pessoa atualizados com sucesso!', 'success')
         return redirect(url_for('dashboard'))  
     return render_template('cadastro.html', pessoa=pessoa)
 
-
 # Delete
-@app.route('/deletepessoa/<int:id>', methods=['GET'])
+@routes_blueprint.route('/deletepessoa/<int:id>', methods=['GET'])
 def excluir_pessoa(id):
     pessoa = Pessoa.query.get(id)
     db.session.delete(pessoa)
