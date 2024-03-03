@@ -57,19 +57,37 @@
 
         .botao {
             border-radius: 30px;
-            width: 80px;
+            width: 90px;
             padding: 10px;
             background: rgb(15, 13, 26);
             color: #fff;
             box-shadow: 0px 0px 10px rgb(77, 76, 83);
             border: none;
+            text-align: center;
+            text-decoration: none;
+        }
+        button{
+            border-radius: 30px;
+            width: 90px;
+            padding: 10px;
+            background: rgb(15, 13, 26);
+            color: #fff;
+            box-shadow: 0px 0px 10px rgb(77, 76, 83);
+            border: none;
+            text-align: center;
+            text-decoration: none;
+        }
+        h2{
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
     <main>
+        <a href="{{ url_for('routes.index') }}"><button>Sair</button></a>
         <h2>Tabela de Dados</h2>
+        <br>
         <table>
             <thead>
                 <tr>
@@ -80,7 +98,17 @@
                 </tr>
             </thead>
             <tbody>
-
+                {% for pessoa in pessoas %}
+                    <tr id="trPessoa">
+                        <td>{{ pessoa.nomeCompleto }}</td>
+                        <td>{{ pessoa.cpf }}</td>
+                        <td>{{ pessoa.dataNascimento.strftime('%d/%m/%Y') }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for('routes.editar_pessoa', id=pessoa.id) }}" class="botao">Editar</a>
+                            <a href="{{ url_for('routes.excluir_pessoa', id=pessoa.id) }}" class="botao">Excluir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </main>

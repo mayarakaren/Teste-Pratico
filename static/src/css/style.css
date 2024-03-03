@@ -16,6 +16,16 @@ main {
   padding-inline: 4em;
 }
 
+/* .seta{
+  background: url(../assets/img/seta.png);
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+} */
+
 .container {
   width: 100%;
   height: 100%;
@@ -74,10 +84,25 @@ form {
 
 #password{
   grid-area: passwInput;
+
 }
 
 #passwordConf{
   grid-area: passwordConfInput;
+}
+
+.detailsPassword{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray; 
+    border-radius: 8px;
+    padding-inline: 4px;
+}
+
+.detailsPassword input{
+  border: none;
+  width: 100%;
 }
 
 form fieldset {
@@ -128,6 +153,7 @@ label input {
   height: 16px;
   margin-left: 5px;
   background-image: url("../assets/img/eye.png");
+  background-size: contain;
 }
 
 .password-eye-icon:hover {

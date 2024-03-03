@@ -131,11 +131,11 @@ def editar_pessoa(id):
         pessoa.estadoCivil = request.form['estadoCivil']
         pessoa.endereco = request.form['endereco']
         pessoa.cep = request.form['cep']
-        pessoa.senha = request.form['password']  # Adicione essa linha
+        pessoa.senha = request.form['password']  
         db.session.commit()
         flash('Dados da pessoa atualizados com sucesso!', 'success')
         return redirect(url_for('routes.dashboard')) 
-    return render_template('cadastro.html', pessoa=pessoa)
+    return render_template('cadastrar.html', pessoa=pessoa)
 
 # Delete
 @routes_blueprint.route('/deletepessoa/<int:id>', methods=['GET'])

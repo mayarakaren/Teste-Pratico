@@ -208,28 +208,9 @@ passwordConfInput.addEventListener("input", () => {
 
 //Dados da tabela
 document.addEventListener("DOMContentLoaded", function () {
-    const tabela = document.getElementById("tabela-dados");
-    const tbody = tabela.querySelector("tbody");
-
-    function carregarDados() {
-        fetch("/api/pessoas")
-            .then((response) => response.json())
-            .then((data) => {
-                tbody.innerHTML = "";
-                data.forEach((dado) => {
-                    const linha = criarLinha(dado);
-                    tbody.appendChild(linha);
-                });
-            })
-            .catch((error) => console.error("Erro ao carregar dados:", error));
-    }
-
     function criarLinha(dado) {
-        const tr = document.createElement("tr");
+        const tr = document.getElementById("trPessoa");
         tr.innerHTML = `
-            <td>${dado.nome}</td>
-            <td>${dado.cpf}</td>
-            <td>${dado.dataNascimento}</td>
             <td class="actions">
                 <button class="botao editar" data-id="${dado.id}">Editar</button>
                 <button class="botao excluir" data-id="${dado.id}">Excluir</button>
@@ -268,7 +249,8 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (e) {
         if (e.target.classList.contains('flash-close-btn')) {
-            e.target.parentElement.style.display = 'none';
+            var flashMessage = document.getElementById('flash-messages');
+            flashMessage.parentNode.removeChild(flashMessage);
         }
     });
 });
