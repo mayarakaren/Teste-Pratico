@@ -1,7 +1,5 @@
 # PreencheAqui - Sistema de Cadastro de Dados Pessoais
 
-# MyPersonalHub - Sistema de Gestão Pessoal
-
 ## Descrição do Projeto
 O PreencheAqui é um sistema avançado de gestão pessoal desenvolvido com Python utilizando o framework Flask, juntamente com tecnologias como HTML, CSS e JavaScript. Esse projeto foi idealizado para fornecer uma solução abrangente de cadastro e gerenciamento de dados pessoais, proporcionando uma experiência eficiente e amigável ao usuário.
 
