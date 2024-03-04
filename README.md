@@ -32,12 +32,12 @@ O PreencheAqui é um sistema avançado de gestão pessoal desenvolvido com Pytho
 ### Execução do Projeto
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/mayarakaren/MyPersonalHub.git
+   https://github.com/mayarakaren/Teste-Pratico.git
    ```
 
 2. Acesse o diretório do projeto:
    ```bash
-   cd MyPersonalHub
+   cd Teste-Pratico
    ```
 
 3. Instale as dependências do Python (certifique-se de ter o Python e o pip instalados):
