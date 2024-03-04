@@ -1,14 +1,16 @@
 # PreencheAqui - Sistema de Cadastro de Dados Pessoais
 
+# MyPersonalHub - Sistema de Gestão Pessoal
+
 ## Descrição do Projeto
-O PreencheAqui é um sistema simples de cadastro de dados pessoais desenvolvido utilizando HTML, CSS, JavaScript e Python com Flask. O objetivo é coletar informações básicas sobre uma pessoa e armazená-las em algum lugar, seja um banco de dados, planilha eletrônica, bloco de notas, etc.
+O PreencheAqui é um sistema avançado de gestão pessoal desenvolvido com Python utilizando o framework Flask, juntamente com tecnologias como HTML, CSS e JavaScript. Esse projeto foi idealizado para fornecer uma solução abrangente de cadastro e gerenciamento de dados pessoais, proporcionando uma experiência eficiente e amigável ao usuário.
 
 ## Requisitos do Sistema
 ### Linguagem de Programação
-- Livre
+- Python (Flask)
 
 ### Banco de Dados
-- Livre
+- SQLite (utilizado no exemplo, mas pode ser adaptado para outros)
 
 ### Campos Obrigatórios
 1. Nome Completo
@@ -24,16 +26,20 @@ O PreencheAqui é um sistema simples de cadastro de dados pessoais desenvolvido 
 ### Funcionalidades
 - Botão "SALVAR" para gravar os dados
 - Botão "CANCELAR" para limpar o formulário
+- Cadastro de usuários com login e senha
+- Atualização e exclusão de dados
+- Dashboard com visão geral dos cadastros
+- API REST para obter dados
 
 ### Execução do Projeto
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/mayarakaren/Teste-Pratico.git
+   git clone https://github.com/mayarakaren/MyPersonalHub.git
    ```
 
 2. Acesse o diretório do projeto:
    ```bash
-   cd Teste-Pratico
+   cd MyPersonalHub
    ```
 
 3. Instale as dependências do Python (certifique-se de ter o Python e o pip instalados):
@@ -54,11 +60,13 @@ O PreencheAqui é um sistema simples de cadastro de dados pessoais desenvolvido 
 - JavaScript
 - Python
 - Flask
+- SQLAlchemy (para integração com banco de dados)
 
 ## Estrutura do Projeto
 - `src/`: Contém arquivos como CSS e JavaScript.
 - `templates/`: Armazena os arquivos HTML.
 - `app.py`: Arquivo principal do Flask.
+- `models/`: Contém os modelos de dados para o SQLAlchemy.
 
 ## Licença
 Este projeto está sob a licença [MIT](LICENSE).
