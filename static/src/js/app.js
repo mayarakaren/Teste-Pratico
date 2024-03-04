@@ -1,3 +1,43 @@
+//Validações
+
+function validarCPF(cpf) {
+    const regex = /^([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[\-]?[0-9]{2})$/;
+    return regex.test(cpf);
+}
+
+function validarCEP(cep) {
+    const regex = /^([0-9]{5}[\-]?[0-9]{3})$/;
+    return regex.test(cep);
+}
+
+function validarEmail(email) {
+    const regex =
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(email);
+}
+
+function validar() {
+    const cpf = document.querySelectorAll("#cpf")[1].value;
+    const cep = document.querySelectorAll("#cep")[1].value;
+    const email = document.querySelectorAll("#email")[1].value;
+
+    if (!validarCPF(cpf)) {
+        alert("CPF inválido!");
+        return;
+    }
+
+    if (!validarCEP(cep)) {
+        alert("CEP inválido!");
+        return;
+    }
+
+    if (!validarEmail(email)) {
+        alert("Email inválido!");
+        return;
+    }
+}
+
+//Telefone
 const inputTelefone = document.querySelectorAll("#telefone")[1];
 console.log(inputTelefone);
 
@@ -106,50 +146,11 @@ inputCEP.addEventListener("keydown", function handleKeyDown(event) {
     }
 });
 
+
 //Limpar formulário
 function limparFormulario() {
     document.getElementById("signupForm").reset();
 }
-
-//Validações
-
-function validarCPF(cpf) {
-    const regex = /^([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[\-]?[0-9]{2})$/;
-    return regex.test(cpf);
-}
-
-function validarCEP(cep) {
-    const regex = /^([0-9]{5}[\-]?[0-9]{3})$/;
-    return regex.test(cep);
-}
-
-function validarEmail(email) {
-    const regex =
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(email);
-}
-
-function validar() {
-    const cpf = document.querySelectorAll("#cpf")[1].value;
-    const cep = document.querySelectorAll("#cep")[1].value;
-    const email = document.querySelectorAll("#email")[1].value;
-
-    if (!validarCPF(cpf)) {
-        alert("CPF inválido!");
-        return;
-    }
-
-    if (!validarCEP(cep)) {
-        alert("CEP inválido!");
-        return;
-    }
-
-    if (!validarEmail(email)) {
-        alert("Email inválido!");
-        return;
-    }
-}
-
 //idade
 document
     .getElementById("dataNascimento")
@@ -169,88 +170,3 @@ document
         document.querySelectorAll("#idade")[1].value = diffAnos;
     });
 
-//Senha
-const passwordInput = document.getElementById("passwordInput");
-const passwordConfInput = document.getElementById("passwordConfInput");
-
-// Função para mostrar/esconder a senha
-function togglePasswordVisibility(input) {
-    const type = input.getAttribute("type");
-    const icon = input.parentNode.querySelector(".password-eye-icon");
-
-    if (type === "password") {
-        input.setAttribute("type", "text");
-        icon.classList.remove("fa-eye");
-        icon.classList.add("fa-eye-slash");
-    } else {
-        input.setAttribute("type", "password");
-        icon.classList.remove("fa-eye-slash");
-        icon.classList.add("fa-eye");
-    }
-}
-
-// Adicionando eventos de clique nos ícones de "olho"
-const passwordEyeIcons = document.querySelectorAll(".password-eye-icon");
-for (const icon of passwordEyeIcons) {
-    icon.addEventListener("click", () => {
-        togglePasswordVisibility(icon.parentNode.querySelector("input"));
-    });
-}
-
-// Validação de senha
-passwordConfInput.addEventListener("input", () => {
-    if (passwordInput.value !== passwordConfInput.value) {
-        passwordConfInput.setCustomValidity("As senhas não coincidem.");
-    } else {
-        passwordConfInput.setCustomValidity("");
-    }
-});
-
-//Dados da tabela
-document.addEventListener("DOMContentLoaded", function () {
-    function criarLinha(dado) {
-        const tr = document.getElementById("trPessoa");
-        tr.innerHTML = `
-            <td class="actions">
-                <button class="botao editar" data-id="${dado.id}">Editar</button>
-                <button class="botao excluir" data-id="${dado.id}">Excluir</button>
-            </td>
-        `;
-        return tr;
-    }
-
-    carregarDados();
-
-    tabela.addEventListener("click", function (event) {
-        const botaoEditar = event.target.closest(".editar");
-        const botaoExcluir = event.target.closest(".excluir");
-
-        if (botaoEditar) {
-            const id = botaoEditar.getAttribute("data-id");
-            window.location.href = `/editpessoa/${id}`;
-        } else if (botaoExcluir) {
-            const id = botaoExcluir.getAttribute("data-id");
-            if (confirm("Tem certeza que deseja excluir esta pessoa?")) {
-                fetch(`/excluir_pessoa/${id}`, {
-                    method: "DELETE",
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        alert(data.message);
-                        carregarDados();
-                    })
-                    .catch((error) => console.error("Erro ao excluir pessoa:", error));
-            }
-        }
-    });
-});
-
-//Pop-up
-document.addEventListener('DOMContentLoaded', function () {
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('flash-close-btn')) {
-            var flashMessage = document.getElementById('flash-messages');
-            flashMessage.parentNode.removeChild(flashMessage);
-        }
-    });
-});

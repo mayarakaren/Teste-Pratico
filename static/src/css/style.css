@@ -58,49 +58,49 @@ form {
   grid-area: idade;
 }
 
-#cpf{
+#cpf {
   grid-area: cpf;
 }
 
-#email{
+#email {
   grid-area: emailInput;
 }
 
-#telefone{
+#telefone {
   grid-area: telefoneInput;
 }
 
-#estadoCivil{
+#estadoCivil {
   grid-area: estadoCivil;
 }
 
-#endereco{
+#endereco {
   grid-area: enderecoInput;
 }
 
-#cep{
+#cep {
   grid-area: cepInput;
 }
 
-#password{
+#password {
   grid-area: passwInput;
 
 }
 
-#passwordConf{
+#passwordConf {
   grid-area: passwordConfInput;
 }
 
-.detailsPassword{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid gray; 
-    border-radius: 8px;
-    padding-inline: 4px;
+.detailsPassword {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding-inline: 4px;
 }
 
-.detailsPassword input{
+.detailsPassword input {
   border: none;
   width: 100%;
 }
@@ -115,8 +115,8 @@ form fieldset {
     'telefoneInput estadoCivil estadoCivil'
     'enderecoInput enderecoInput cepInput'
     'passwInput passwInput passwordConfInput';
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 }
 
 form fieldset label {
@@ -138,7 +138,7 @@ label input {
   font-size: 16px;
 }
 
-#civilEstado{
+#civilEstado {
   padding: 8px;
   border: 0.5px solid rgb(184, 184, 184);
   border-radius: 8px;

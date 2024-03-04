@@ -39,7 +39,6 @@ def login():
         if pessoa and check_password_hash(pessoa.senha, senha):  
             user = create_user_from_pessoa(pessoa)
             login_user(user)
-            flash('Login realizado com sucesso!', 'success')
             return redirect(url_for('routes.dashboard'))
         else:
             flash('Email ou senha inválidos. Verifique suas credenciais e tente novamente.', 'error')
@@ -62,7 +61,7 @@ def obter_pessoas():
         'dataNascimento': pessoa.dataNascimento.strftime('%d/%m/%Y'),
     } for pessoa in pessoas])
 
-@routes_blueprint.route('/cadastrar')
+@routes_blueprint.route('/cadastrar', methods=['GET'])
 def cadastrar():
     return render_template('cadastrar.html')
 
@@ -117,6 +116,10 @@ def pessoa_detalhes(id):
     pessoa = Pessoa.query.get(id)
     return render_template('dash.html', pessoa=pessoa)
 
+@routes_blueprint.route('/editpessoa/<int:id>', methods=['GET'])
+def edit_pessoa(id):
+    pessoa = Pessoa.query.get(id)
+    return render_template('editar.html', pessoa=pessoa)
 #Update
 @routes_blueprint.route('/editpessoa/<int:id>', methods=['GET', 'POST'])
 def editar_pessoa(id):
@@ -135,7 +138,7 @@ def editar_pessoa(id):
         db.session.commit()
         flash('Dados da pessoa atualizados com sucesso!', 'success')
         return redirect(url_for('routes.dashboard')) 
-    return render_template('cadastrar.html', pessoa=pessoa)
+
 
 # Delete
 @routes_blueprint.route('/deletepessoa/<int:id>', methods=['GET'])
